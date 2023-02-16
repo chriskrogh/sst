@@ -63,10 +63,6 @@ async function replaceWithSsmValues(name: string) {
 }
 
 async function loadSsm(name: string, props: string[]) {
-  const SSM_PREFIX = `/sst/${process.env.SST_APP}/${process.env.SST_STAGE}/${className}/${name}`;
-  // Fetch secrets
-  const validParams: Parameter[] = [];
-  const invalidParams: string[] = [];
   const command = new GetParametersCommand({
     Names: props.map((prop) => buildSsmPath(className, name, prop)),
     WithDecryption: true,
